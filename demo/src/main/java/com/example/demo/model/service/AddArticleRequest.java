@@ -12,8 +12,8 @@ public class AddArticleRequest {
     
     public Article toEntity(){ // Article 객체 생성
         return Article.builder()
-        .title(title)
-        .content(content)
-        .build();
+            .title(title)
+            .content(content)
+            .build();
     }
 }

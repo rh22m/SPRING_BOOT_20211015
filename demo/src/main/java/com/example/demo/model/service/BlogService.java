@@ -1,13 +1,13 @@
 package com.example.demo.model.service;
 import java.util.List;
 
-import org.apache.el.stream.Optional;
+//import org.apache.el.stream.Optional;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-
+//import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PutMapping;
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +32,6 @@ public class BlogService {
                 article.update(request.getTitle(), request.getContent()); // 값을 수정
                 blogRepository.save(article); // Article 객체에 저장
         });
-    }
-
-    @PutMapping("/api/article_edit/{id}")
-    public String updateArticle(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
-        blogService.update(id, request);
-        return "redirect:/article_list"; // 글 수정 이후 .html 연결
     }
 
     public void delete(Long id) {

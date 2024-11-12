@@ -1,7 +1,10 @@
 package com.example.demo.model.domain;
 
-import lombok.*; // 어노테이션 자동 생성
 import jakarta.persistence.*; // 기존 javax 후속 버전
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter // setter는 없음(무분별한 변경 x)
 @Entity // 아래 객체와 DB 테이블을 매핑. JPA가 관리
@@ -13,8 +16,10 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 1씩 증가
     @Column(name = "id", updatable = false) // 수정 x
     private Long id;
+
     @Column(name = "title", nullable = false) // null x
     private String title = "";
+
     @Column(name = "content", nullable = false)
     private String content = "";
 
@@ -22,4 +27,15 @@ public void update(String title, String content) { // 현재 객체 상태 업�
         this.title = title;
         this.content = content;
     }
+
+    @Builder // 빌더 패턴으로 객체 생성
+    public Article(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+//public static Object builder() {
+    // TODO Auto-generated method stub
+    //throw new UnsupportedOperationException("Unimplemented method 'builder'");
+//}
 }

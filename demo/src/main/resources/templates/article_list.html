@@ -48,12 +48,7 @@
             </table>
         </div>
 
-        <a class="btn btn-warning" th:href="@{/article_edit/{id}(id=${article.id})}">수정</a>
-        <!-- 게시글 삭제 -->
-        <form th:action="@{/api/article_delete/{id}(id=${article.id})}" method="post" style="display:inline;">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit" class="btn btn-danger">삭제</button>
-        </form>
+        
 
     </div>
     </body>

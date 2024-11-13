@@ -1,19 +1,25 @@
 package com.example.demo.model.service;
+
 import java.util.List;
 
 //import org.apache.el.stream.Optional;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
+//import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Page;
+//import org.springframework.data.domain.PageImpl;
+//import java.util.Map;
 
-import com.example.demo.model.domain.Article;
-import com.example.demo.model.service.AddArticleRequest;
-
+//import com.example.demo.model.domain.Article;
+//import com.example.demo.model.service.AddArticleRequest;
+//import com.ibm.dtfj.corereaders.PageCache.Page;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PutMapping;
 import com.example.demo.model.domain.Board;
-import com.example.demo.model.repository.BlogRepository;
+//import com.example.demo.model.repository.BlogRepository;
 import com.example.demo.model.repository.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -36,13 +42,26 @@ public class BlogService {
         return blogRepository.findAll();
     }
 
+    public Page<Board> findAll(Pageable pageable) {
+        return blogRepository.findAll(pageable);
+    }
+
+    public Page<Board> searchByKeyword(String keyword, Pageable pageable) {
+        return blogRepository.findByTitleContainingIgnoreCase(keyword, pageable);
+    } // LIKE 검색 제공(대소문자 무시)
+
     public Optional<Board> findById(Long id) { // 게시판 특정 글 조회
         return blogRepository.findById(id);
     }
 
-    public Article save(AddArticleRequest request){
+    public Board save(AddArticleRequest request){
+        // DTO가 없는 경우 이곳에 직접 구현 가능
         return blogRepository.save(request.toEntity());
-    }
+    } 
+
+    //public Article save(AddArticleRequest request){
+    //    return blogRepository.save(request.toEntity());
+    //}
 
     //public void update(Long id, AddArticleRequest request) {
     //    Optional<Article> optionalArticle = blogRepository.findById(id); // 단일 글 조회

@@ -27,3 +27,15 @@ public Board toEntity(){ // Board 객체 생성
         .build();
     }
 }
+
+// public class AddArticleRequest {
+//     private String title;
+//     private String content;
+
+// public Board toEntity(){ // Board 객체 생성
+//     return Board.builder()
+//         .title(title)
+//         .content(content)
+//         .build();
+//     }
+// }

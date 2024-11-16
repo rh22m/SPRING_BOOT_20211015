@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 ////import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-////import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
@@ -91,12 +91,19 @@ public String board_edit(Model model, @PathVariable Long id) {
     Optional<Board> list = blogService.findById(id); // 선택한 게시판 글
 
     if (list.isPresent()) {
-        model.addAttribute("boards", list.get()); // 존재할 경우 실제 Article 객체를 모델에 추가
+        model.addAttribute("board", list.get()); // 존재할 경우 실제 Article 객체를 모델에 추가
     } else {
     return "/error_page/article_error";
     }
     return "board_edit"; // .HTML 연결
     }
+
+//@PutMapping
+@PostMapping("/api/board_edit/{id}")
+public String updateBoard(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
+    blogService.update(id, request);
+    return "redirect:/board_list"; // 글 수정 이후 .html 연결
+}
 
 
 @PostMapping("/api/boards") // 글쓰기 게시판 저장
@@ -110,6 +117,7 @@ public String addboards(@ModelAttribute AddArticleRequest request) {
 //    blogService.update(id, request);
 //    return "redirect:/article_list"; // 글 수정 이후 .html 연결
 //}
+
 
 //@DeleteMapping("/api/article_delete/{id}")
 //public String deleteArticle(@PathVariable Long id) {

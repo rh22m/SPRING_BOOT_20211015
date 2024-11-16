@@ -33,9 +33,4 @@ public void update(String title, String content) { // 현재 객체 상태 업�
         this.title = title;
         this.content = content;
     }
-
-//public static Object builder() {
-    // TODO Auto-generated method stub
-    //throw new UnsupportedOperationException("Unimplemented method 'builder'");
-//}
 }

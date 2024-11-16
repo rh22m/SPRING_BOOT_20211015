@@ -26,6 +26,17 @@ public class Board {
     @Column(name = "likec", nullable = false)
     private String likec = "";
 
+    @Builder
+    public Board(String title, String content, String user, String newdate, String count, String likec){
+        this.title = title;
+        this.content = content;
+        this.user = user;
+        this.newdate = newdate;
+        this.count = count;
+        this.likec = likec;
+
+    }
+
 public void update(String title, String content) { // 현재 객체 상태 업데이트
         this.title = title;
         this.content = content;

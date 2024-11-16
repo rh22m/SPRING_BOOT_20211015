@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-////import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 ////import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,7 +43,7 @@ BlogService blogService; // DemoController 클래스 아래 객체 생성
 public String board_list(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String keyword) {
     PageRequest pageable = PageRequest.of(page, 3); // 한 페이지의 게시글 수
     Page<Board> list; // Page를 반환
-
+    //int startNum = (page * 3)+1;
     if (keyword.isEmpty()) {
         list = blogService.findAll(pageable); // 기본 전체 출력(키워드 x)
     } else {
@@ -105,11 +105,16 @@ public String updateBoard(@PathVariable Long id, @ModelAttribute AddArticleReque
     return "redirect:/board_list"; // 글 수정 이후 .html 연결
 }
 
-
 @PostMapping("/api/boards") // 글쓰기 게시판 저장
 public String addboards(@ModelAttribute AddArticleRequest request) {
     blogService.save(request);
     return "redirect:/board_list"; // .HTML 연결
+}
+
+@DeleteMapping("/api/board_delete/{id}")
+public String deleteBoard(@PathVariable Long id) {
+    blogService.delete(id);
+    return "redirect:/board_list";
 }
 
 //@PutMapping("/api/article_edit/{id}")

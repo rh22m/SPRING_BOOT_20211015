@@ -79,9 +79,9 @@ public class BlogService {
         });
     }
 
-    //public void delete(Long id) {
-    //    blogRepository.deleteById(id);
-    //}
+    public void delete(Long id) {
+        blogRepository.deleteById(id);
+    }
 
     //public Article save(AddArticleRequest request){
         // DTO가 없는 경우 이곳에 직접 구현 가능

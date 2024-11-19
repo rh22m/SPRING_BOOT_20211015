@@ -42,8 +42,8 @@ BlogService blogService; // DemoController 클래스 아래 객체 생성
 @GetMapping("/board_list") // 새로운 게시판 링크 지정
 public String board_list(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String keyword) {
     PageRequest pageable = PageRequest.of(page, 3); // 한 페이지의 게시글 수
-    Page<Board> list; // Page를 반환
-    //int startNum = (page * 3)+1;
+    Page<Board> list; //int startNum = (page * 3) + 1; // Page를 반환
+
     if (keyword.isEmpty()) {
         list = blogService.findAll(pageable); // 기본 전체 출력(키워드 x)
     } else {

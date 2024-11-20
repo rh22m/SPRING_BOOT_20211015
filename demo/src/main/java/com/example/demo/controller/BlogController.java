@@ -1,12 +1,7 @@
 package com.example.demo.controller;
 import com.example.demo.model.service.AddArticleRequest;
-////import com.example.demo.model.service.AddArticleRequest;
 import com.example.demo.model.service.BlogService;
-
-//import java.util.List;
 import java.util.Optional;
-//import org.apache.el.stream.Optional; optinal적용 못 받아들임
-//import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -14,16 +9,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-////import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
+import com.example.demo.model.domain.Board;
+////import org.springframework.web.bind.annotation.ModelAttribute;
+////import org.springframework.web.bind.annotation.PutMapping;
+////import com.example.demo.model.service.AddArticleRequest;
 //import org.springframework.data.domain.Pageable;
 //import com.example.demo.model.domain.Article;
-import com.example.demo.model.domain.Board;
-
+//import org.apache.el.stream.Optional; optinal적용 못 받아들임
+//import org.hibernate.mapping.List;
+//import java.util.List;
 
 @Controller // 컨트롤러 어노테이션 명시
 public class BlogController {
@@ -59,11 +57,9 @@ public String board_list(Model model, @RequestParam(defaultValue = "0") int page
 //@GetMapping("/article_edit/{id}") // 게시판 링크 지정
 //public String article_edit(Model model, @PathVariable Long id) {
 //    Optional<Article> list = blogService.findById(id); // 선택한 게시판 글
-
 //    if (list.isPresent()) {
 //        model.addAttribute("boards", list.get()); // 존재할 경우 실제 Article 객체를 모델에 추가
 //    } else {
-    
 //    return "/error_page/article_error";
 //    }
 //    return "article_edit"; // .HTML 연결

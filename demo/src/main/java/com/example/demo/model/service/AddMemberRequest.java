@@ -18,9 +18,9 @@ public class AddMemberRequest {
     private String email;
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z]).{8,30}", message = "비밀번호는 8자 이상, 영문 대소문자를 사용하세요.")
     private String password;
-    @Pattern(regexp = "^[1-9]{1}[0-9]{1}$", message = "나이는 숫자로 19세부터 입력 가능합니다.")
-    @Min(value = 19)
-    @Max(value = 90)
+    @Pattern(regexp = "^[1-9]{1}[0-9]{1}$", message = "나이는 숫자로 입력, 19세 이상부터 가입 가능합니다.") //10의자리는 1~9, 1의자리는 0~9
+    @Min(value = 19) //최소 19
+    @Max(value = 90) //최대 90
     private String age;
     @NotEmpty
     private String mobile;

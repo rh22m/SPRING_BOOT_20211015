@@ -1,7 +1,9 @@
 package com.example.demo.model.service;
 
+import jakarta.validation.Valid; //입력값 검증 Valid
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import com.example.demo.model.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import com.example.demo.model.domain.Member;
@@ -29,6 +31,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.data.web.PageableDefault;
 
 @Service
+@Validated
 @Transactional // 트랜잭션 처리(클래스 내 모든 메소드 대상)
 @RequiredArgsConstructor
 public class MemberService {
@@ -41,7 +44,7 @@ public class MemberService {
         throw new IllegalStateException("이미 가입된 회원입니다."); // 예외처리
     }
 }
-public Member saveMember(AddMemberRequest request){
+public Member saveMember(@Valid AddMemberRequest request){
     validateDuplicateMember(request); // 이메일 체크
 
     String encodedPassword = passwordEncoder.encode(request.getPassword());

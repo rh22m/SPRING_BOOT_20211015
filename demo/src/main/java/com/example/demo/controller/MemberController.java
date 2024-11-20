@@ -1,20 +1,22 @@
 package com.example.demo.controller;
+
+import jakarta.validation.Valid; //입력값 검증 Valid
 import com.example.demo.model.service.AddMemberRequest;
 import com.example.demo.model.service.MemberService;
 import com.example.demo.model.domain.Member;
-//import java.util.Optional;
-//import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.data.domain.PageRequest;
+//import org.springframework.web.bind.annotation.DeleteMapping;
+//import org.springframework.web.bind.annotation.PathVariable;
+//import java.util.Optional;
+//import org.springframework.data.domain.Page;
 //import com.example.demo.model.service.AddArticleRequest;
 ////import com.example.demo.model.service.AddArticleRequest;
 //import org.apache.el.stream.Optional; optinal적용 못 받아들임
@@ -25,7 +27,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 //import com.example.demo.model.domain.Article;
 //import com.example.demo.model.domain.Board;
 //import java.util.List;
-
 
 @Controller // 컨트롤러 어노테이션 명시
 public class MemberController {
@@ -39,7 +40,7 @@ public String join_new() {
 }
 
 @PostMapping("/api/members") // 회원 가입 저장
-public String addmembers(@ModelAttribute AddMemberRequest request) {
+public String addmembers(@Valid @ModelAttribute AddMemberRequest request) {
     memberService.saveMember(request);
     return "join_end"; // .HTML 연결
 }

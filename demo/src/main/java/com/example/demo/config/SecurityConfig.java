@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.config.Customizer; // Customizer 클래스 임포트 추가
+//import org.springframework.security.config.Customizer; // Customizer 클래스 임포트 추가
 
 @Configuration // *Bean 생성* 스프링 설정 클래스 지정
 @EnableWebSecurity // 스프링 보안 활성화
@@ -20,7 +20,8 @@ public class SecurityConfig { // 스프링에서 보안 관리 클래스
                         response.setHeader("X-XSS-Protection", "1; mode=block"); // XSS-Protection 헤더 설정
                     })
                     )
-                    .csrf(Customizer.withDefaults()) // CSRF 보호 기본 설정 사용
+                    //.csrf(Customizer.withDefaults()) // CSRF 보호 기본 설정 사용
+                    .csrf(csrf -> csrf.disable())
                     .sessionManagement(session -> session
                                     .invalidSessionUrl("/session-expired") // 세션 만료시 이동 페이지
                                     .maximumSessions(1) // 사용자 별 세션 최대 수
